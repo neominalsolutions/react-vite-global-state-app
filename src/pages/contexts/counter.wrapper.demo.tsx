@@ -1,7 +1,8 @@
-import { CounterProvider } from '../contexts/counter.context';
-import { CounterActions, CounterView } from '../main';
-
 // Not: Bu örnekte CounterProvider sadece CounterView ile CounterActions ait global bir state yapısı görevi görür.
+
+import { CounterProvider } from '../../contexts/counter.context';
+import { CounterActions, CounterView } from '../../main';
+
 // Not: Step Step Form işlemlerinde tercih edilen bir teknik.
 function CounterWrapper() {
 	return (

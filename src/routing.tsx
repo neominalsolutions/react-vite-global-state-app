@@ -1,6 +1,7 @@
 import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
-import CounterActionDemo from './pages/counter.actions.demo';
-import CounterViewDemo from './pages/counter.view.demo';
+import CounterViewDemo from './pages/contexts/counter.view.demo';
+import CounterActionDemo from './pages/contexts/counter.actions.demo';
+import ReduxDemo from './pages/redux/redux.demo';
 
 export const router = createBrowserRouter([
 	{
@@ -9,6 +10,8 @@ export const router = createBrowserRouter([
 			<>
 				<h1>Main Layout</h1>
 				<Link to="/contextapi">Context API</Link>
+				{' | '}
+				<Link to="/redux">REDUX API</Link>
 				<Outlet />
 			</>
 		),
@@ -35,5 +38,9 @@ export const router = createBrowserRouter([
 				Component: CounterActionDemo,
 			},
 		],
+	},
+	{
+		path: 'redux',
+		Component: ReduxDemo,
 	},
 ]);

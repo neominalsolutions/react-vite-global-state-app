@@ -1,4 +1,4 @@
-import { CounterActions } from '../main';
+import { CounterActions } from '../../main';
 
 function CounterActionDemo() {
 	return (

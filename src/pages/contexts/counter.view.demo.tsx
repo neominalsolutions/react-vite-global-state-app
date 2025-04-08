@@ -1,4 +1,4 @@
-import { CounterView } from '../main';
+import { CounterView } from '../../main';
 
 function CounterViewDemo() {
 	return (

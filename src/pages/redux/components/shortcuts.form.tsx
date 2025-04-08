@@ -10,7 +10,9 @@ function ShortCutsForm() {
 	// action tetiklemek için react-redux hook olan dispatch hook kullanırız.
 	const dispatch = useDispatch<AppDispatch>();
 
-	const onFormSubmit = () => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const onFormSubmit = (e: any) => {
+		e.preventDefault(); // formun serverside çalışmasını kapattık.
 		const title = titleInputRef.current?.value;
 		const link = linkInputRef.current?.value;
 
