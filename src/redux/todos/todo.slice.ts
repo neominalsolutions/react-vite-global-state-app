@@ -16,17 +16,22 @@ const initState: TodoState = {
 	fetched: false,
 };
 
+// Not: sadece async functionlar dispatch ile tetiklenir, async işlemlerde süreç kendi içindeki builder.case üzerinden yürütülür.extraReducers dışarı bu sebeple export edilmez.
 export const fetchTodos = createAsyncThunk('FETCH-TODOS', async () => {
 	return fetch('https://jsonplaceholder.typicode.com/todos').then((response) =>
 		response.json()
 	);
 });
 
-createSlice({
+const TodoSlice = createSlice({
 	name: 'TODO-ASYNC',
 	initialState: initState,
 	reducers: {
 		// senkron çalışan state ifadeleri için kullanılan yapı
+		// formdan eklenen bir verinin form işlemi sonrasında state yansıtılmasını sağlayan reducer
+		addItem: (state: TodoState, action: PayloadAction<Todo>) => {
+			state.data.push(action.payload);
+		},
 	},
 	extraReducers(builder) {
 		// aseknron ifadeler için ise kullanalım
@@ -53,3 +58,6 @@ createSlice({
 		);
 	},
 });
+
+export const { addItem } = TodoSlice.actions;
+export const TodoReducer = TodoSlice.reducer;
