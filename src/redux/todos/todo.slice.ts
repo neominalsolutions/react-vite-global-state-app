@@ -24,7 +24,7 @@ export const fetchTodos = createAsyncThunk('FETCH-TODOS', async () => {
 });
 
 const TodoSlice = createSlice({
-	name: 'TODO-ASYNC',
+	name: 'TODOS',
 	initialState: initState,
 	reducers: {
 		// senkron çalışan state ifadeleri için kullanılan yapı
