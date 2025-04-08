@@ -3,7 +3,7 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ShortCut {
+export interface ShortCut {
 	title: string;
 	link: string;
 }
