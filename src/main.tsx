@@ -8,6 +8,8 @@ import {
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routing.tsx';
+import { Provider } from 'react-redux';
+import { store } from './redux/store.ts';
 
 export const CounterView: FC = () => {
 	// state bu component içinde ekranda göstermemiz lazım
@@ -53,15 +55,18 @@ export const CounterActions: FC = () => {
 	);
 };
 
+// 2.aşama Provider Tanımı
 // Hangi Componentler bu state paylaşacak ise ilgili Provider Component ile bunları sarmallamak
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<CounterProvider>
-			{/* <CounterView />
+		<Provider store={store}>
+			<CounterProvider>
+				{/* <CounterView />
 			<hr></hr>
 			<CounterActions /> */}
-			<RouterProvider router={router} />
-      {/* Router içersinde tanımlı tüm componentler CounterProvider ile sarmallandığı için tüm uygulama genelinde componentler arası state paylaşımı yapabiliriz. */}
-		</CounterProvider>
+				<RouterProvider router={router} />
+				{/* Router içersinde tanımlı tüm componentler CounterProvider ile sarmallandığı için tüm uygulama genelinde componentler arası state paylaşımı yapabiliriz. */}
+			</CounterProvider>
+		</Provider>
 	</StrictMode>
 );
