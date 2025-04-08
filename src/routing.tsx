@@ -1,6 +1,10 @@
 import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
 import { lazy } from 'react';
-import LazyDemo from './pages/lazy.demo';
+import LazyDemo from './pages/lazy/lazy.demo';
+
+const ReactQueryDemo = lazy(
+	() => import('./pages/react-query/react-query.demo')
+);
 
 const CounterViewDemo = lazy(
 	() => import('./pages/contexts/counter.view.demo')
@@ -26,43 +30,54 @@ export const router = createBrowserRouter([
 				<Link to="/redux-thunk">REDUX THUNK API</Link>
 				{' | '}
 				<Link to="/lazy-demo">Lazy Demo</Link>
-				<Outlet />
+				{' | '}
+				<Link to="/react-query">React Query Demo</Link>
+
+				<div style={{ padding: 10 }}>
+					<Outlet />
+				</div>
 			</>
-		),
-	},
-	{
-		path: '/contextapi',
-		element: (
-			<div>
-				<nav>
-					<Link to="/contextapi/counter-view">Counter View</Link>
-					{'|'}
-					<Link to="/contextapi/counter-actions">Counter Actions</Link>
-				</nav>
-				<Outlet />
-			</div>
 		),
 		children: [
 			{
-				path: 'counter-view',
-				Component: CounterViewDemo,
+				path: 'react-query',
+				Component: ReactQueryDemo,
 			},
 			{
-				path: 'counter-actions',
-				Component: CounterActionDemo,
+				path: '/contextapi',
+				element: (
+					<div>
+						<nav>
+							<Link to="/contextapi/counter-view">Counter View</Link>
+							{'|'}
+							<Link to="/contextapi/counter-actions">Counter Actions</Link>
+						</nav>
+						<Outlet />
+					</div>
+				),
+				children: [
+					{
+						path: 'counter-view',
+						Component: CounterViewDemo,
+					},
+					{
+						path: 'counter-actions',
+						Component: CounterActionDemo,
+					},
+				],
+			},
+			{
+				path: 'redux',
+				Component: ReduxDemo,
+			},
+			{
+				path: 'redux-thunk',
+				Component: TodoReduxDemo,
+			},
+			{
+				path: 'lazy-demo',
+				Component: LazyDemo,
 			},
 		],
-	},
-	{
-		path: 'redux',
-		Component: ReduxDemo,
-	},
-	{
-		path: 'redux-thunk',
-		Component: TodoReduxDemo,
-	},
-	{
-		path: 'lazy-demo',
-		Component: LazyDemo,
 	},
 ]);
