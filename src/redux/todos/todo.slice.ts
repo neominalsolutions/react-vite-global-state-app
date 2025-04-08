@@ -59,5 +59,5 @@ const TodoSlice = createSlice({
 	},
 });
 
-export const { addItem } = TodoSlice.actions;
+export const { addItem } = TodoSlice.actions; // reducerdan çıkan actionlar
 export const TodoReducer = TodoSlice.reducer;

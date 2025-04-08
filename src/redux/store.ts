@@ -2,10 +2,12 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import { ShortCutsReducer } from './short-cuts/short-cuts.slice';
+import { TodoReducer } from './todos/todo.slice';
 // ...
 // 4.adım Store'a reducer tanıtımı.
 export const store = configureStore({
 	reducer: {
+		todosState: TodoReducer,
 		shortCutsState: ShortCutsReducer, // state ismi ve görevli olduğu function yazılır
 	},
 });
