@@ -1,9 +1,19 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../redux/store';
+import { clear, deleteOne } from '../../../redux/short-cuts/short-cuts.slice';
 
 function ShortCutsList() {
 	// state seç getir.
 	const state = useSelector((state: RootState) => state.shortCutsState);
+	const dispatch = useDispatch<AppDispatch>();
+
+	const onDeleteItem = (title: string) => {
+		dispatch(deleteOne(title));
+	};
+
+	const onClearItem = () => {
+		dispatch(clear());
+	};
 
 	return (
 		<>
@@ -17,11 +27,13 @@ function ShortCutsList() {
 								<div>
 									<div>Title: {item.title}</div>
 									<div>Link: {item.link}</div>
-									<button>Delete Item</button>
+									<button onClick={() => onDeleteItem(item.title)}>
+										Delete Item
+									</button>
 								</div>
 							);
 						})}
-						<div>Clear Items</div>
+						<button onClick={onClearItem}>Clear Items</button>
 					</div>
 				)}
 			</div>

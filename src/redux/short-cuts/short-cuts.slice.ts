@@ -28,10 +28,13 @@ const ShortCutsSlice = createSlice({
 			// silinecekler dışındakileri listele
 			state.items = state.items.filter((x) => x.title != action.payload);
 		},
+		clear: (state: ShortCutsState) => {
+			state.items = [];
+		},
 	},
 });
 
 // actionları çağırmak için useDispatch hook kullanacağız
-export const { addNew, deleteOne } = ShortCutsSlice.actions;
+export const { addNew, deleteOne, clear } = ShortCutsSlice.actions;
 // reducerları ise store içerisine combine edicez.
 export const ShortCutsReducer = ShortCutsSlice.reducer;
