@@ -10,7 +10,7 @@ function TodoReduxDemo() {
 	useEffect(() => {
 		// state boş ise yükle
 		// sayfa refleshlenirse yeniden apiden yükleme yap.
-		if (state.data.length == 0) {
+		if (state.fetched == false) {
 			dispatch(fetchTodos());
 		}
 	}, []);
@@ -24,26 +24,27 @@ function TodoReduxDemo() {
 
 	return (
 		<>
-			{state.fetched} &&{' '}
-			<>
-				{state.data.map((item) => {
-					return (
-						<div key={item.id}>
-							<p>Title: {item.title}</p>
-							<p>
-								Status:{' '}
-								{item.completed ? (
-									<>Tamamlandı</>
-								) : (
-									<>
-										<button onClick={onTaskComplete}>Taskı Tamamla</button>
-									</>
-								)}
-							</p>
-						</div>
-					);
-				})}
-			</>
+			{state.fetched && (
+				<>
+					{state.data.map((item) => {
+						return (
+							<div key={item.id}>
+								<p>Title: {item.title}</p>
+								<p>
+									Status:{' '}
+									{item.completed ? (
+										<>Tamamlandı</>
+									) : (
+										<>
+											<button onClick={onTaskComplete}>Taskı Tamamla</button>
+										</>
+									)}
+								</p>
+							</div>
+						);
+					})}
+				</>
+			)}
 		</>
 	);
 }

@@ -1,15 +1,15 @@
-import { FC, StrictMode, useContext } from 'react';
+import { FC, Suspense, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
 import {
 	CounterContext,
 	CounterContextType,
 	CounterProvider,
 } from './contexts/counter.context.tsx';
 import './index.css';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './routing.tsx';
-import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
+import { router } from './routing.tsx';
 
 export const CounterView: FC = () => {
 	// state bu component içinde ekranda göstermemiz lazım
@@ -58,7 +58,7 @@ export const CounterActions: FC = () => {
 // 2.aşama Provider Tanımı
 // Hangi Componentler bu state paylaşacak ise ilgili Provider Component ile bunları sarmallamak
 createRoot(document.getElementById('root')!).render(
-	<StrictMode>
+	<Suspense fallback={<>... Loading </>}>
 		<Provider store={store}>
 			<CounterProvider>
 				{/* <CounterView />
@@ -68,5 +68,5 @@ createRoot(document.getElementById('root')!).render(
 				{/* Router içersinde tanımlı tüm componentler CounterProvider ile sarmallandığı için tüm uygulama genelinde componentler arası state paylaşımı yapabiliriz. */}
 			</CounterProvider>
 		</Provider>
-	</StrictMode>
+	</Suspense>
 );

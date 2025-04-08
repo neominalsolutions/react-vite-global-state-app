@@ -8,6 +8,8 @@ function CounterWrapper() {
 	return (
 		<>
 			<CounterProvider>
+				{/* asenkron  */}
+
 				<CounterView />
 				{/* Tab1 */}
 				<CounterActions />

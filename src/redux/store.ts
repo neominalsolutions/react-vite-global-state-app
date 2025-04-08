@@ -10,6 +10,7 @@ export const store = configureStore({
 		todosState: TodoReducer,
 		shortCutsState: ShortCutsReducer, // state ismi ve görevli olduğu function yazılır
 	},
+	devTools: process.env.NODE_ENV === 'development', // bunu yapmaylı unutmayalım build alırken devtools disable olur.
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
