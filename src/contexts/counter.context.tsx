@@ -35,11 +35,10 @@ export const CounterProvider = ({ children }: React.ReactNode | any) => {
 			const counterObject = JSON.parse(counterState);
 			setState({ ...state, count: counterObject['count'] });
 		}
-	}, []);
+	}, []); // state değişiminde local storage otomatik güncelle
 
 	const reset = (): void => {
 		setState({ ...state, count: 0 }); // ref type çalışırken state nesnesinin virtual dom üzerinde güncel referansının yeniden alınması lazım
-
 		localStorage.setItem('Counter-State', JSON.stringify({ count: 0 }));
 	};
 
@@ -47,7 +46,7 @@ export const CounterProvider = ({ children }: React.ReactNode | any) => {
 		setState({ ...state, count: state.count + 1 });
 		localStorage.setItem(
 			'Counter-State',
-			JSON.stringify({ count: state.count })
+			JSON.stringify({ count: state.count + 1 })
 		);
 	};
 
@@ -55,7 +54,7 @@ export const CounterProvider = ({ children }: React.ReactNode | any) => {
 		setState({ ...state, count: state.count - 1 });
 		localStorage.setItem(
 			'Counter-State',
-			JSON.stringify({ count: state.count })
+			JSON.stringify({ count: state.count - 1 })
 		);
 	};
 
@@ -63,7 +62,7 @@ export const CounterProvider = ({ children }: React.ReactNode | any) => {
 		setState({ ...state, count: state.count + nm });
 		localStorage.setItem(
 			'Counter-State',
-			JSON.stringify({ count: state.count })
+			JSON.stringify({ count: state.count + nm })
 		);
 	};
 

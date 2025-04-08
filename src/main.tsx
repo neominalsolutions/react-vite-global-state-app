@@ -6,8 +6,10 @@ import {
 	CounterProvider,
 } from './contexts/counter.context.tsx';
 import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routing.tsx';
 
-const CounterView: FC = () => {
+export const CounterView: FC = () => {
 	// state bu component içinde ekranda göstermemiz lazım
 
 	// useContext hook ile global state erişimi yaptık.
@@ -22,7 +24,7 @@ const CounterView: FC = () => {
 	);
 };
 
-const CounterActions: FC = () => {
+export const CounterActions: FC = () => {
 	// başka bir component de ise func props yollamadan ilgili state değerine erişmemiz lazım
 
 	const { reset, increase, decrease } = useContext(
@@ -55,9 +57,11 @@ const CounterActions: FC = () => {
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<CounterProvider>
-			<CounterView />
+			{/* <CounterView />
 			<hr></hr>
-			<CounterActions />
+			<CounterActions /> */}
+			<RouterProvider router={router} />
+      {/* Router içersinde tanımlı tüm componentler CounterProvider ile sarmallandığı için tüm uygulama genelinde componentler arası state paylaşımı yapabiliriz. */}
 		</CounterProvider>
 	</StrictMode>
 );
