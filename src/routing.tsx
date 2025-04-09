@@ -1,7 +1,8 @@
-import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
 import { lazy } from 'react';
-import LazyDemo from './pages/lazy/lazy.demo';
+import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
+import AuthenticationGuard from './guards/authentication.guard';
 import TodoFormDemo from './pages/forms/todo.form.demo';
+import LazyDemo from './pages/lazy/lazy.demo';
 
 const ReactQueryDemo = lazy(
 	() => import('./pages/react-query/react-query.demo')
@@ -23,23 +24,25 @@ export const router = createBrowserRouter([
 		path: '',
 		Component: () => (
 			<>
-				<h1 className="text-3xl font-bold underline">Main Layout</h1>
+				<AuthenticationGuard>
+					<h1 className="text-3xl font-bold underline">Main Layout</h1>
 
-				<Link to="/contextapi">Context API</Link>
-				{' | '}
-				<Link to="/redux">REDUX API</Link>
-				{' | '}
-				<Link to="/redux-thunk">REDUX THUNK API</Link>
-				{' | '}
-				<Link to="/lazy-demo">Lazy Demo</Link>
-				{' | '}
-				<Link to="/react-query">React Query Demo</Link>
-				{' | '}
-				<Link to="/form">Todo Form Demo</Link>
+					<Link to="/contextapi">Context API</Link>
+					{' | '}
+					<Link to="/redux">REDUX API</Link>
+					{' | '}
+					<Link to="/redux-thunk">REDUX THUNK API</Link>
+					{' | '}
+					<Link to="/lazy-demo">Lazy Demo</Link>
+					{' | '}
+					<Link to="/react-query">React Query Demo</Link>
+					{' | '}
+					<Link to="/form">Todo Form Demo</Link>
 
-				<div style={{ padding: 10 }}>
-					<Outlet />
-				</div>
+					<div style={{ padding: 10 }}>
+						<Outlet />
+					</div>
+				</AuthenticationGuard>
 			</>
 		),
 		children: [
@@ -87,5 +90,9 @@ export const router = createBrowserRouter([
 				Component: TodoFormDemo,
 			},
 		],
+	},
+	{
+		path: 'unauthorize',
+		Component: () => <>Yetkiniz Yok!</>,
 	},
 ]);
