@@ -69,21 +69,45 @@ function TodoFormDemo() {
 	//console.log('tile', watch('title'));
 
 	return (
-		<>
+		<div className='flex flex-col"'>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<input type="text" {...register('title')} placeholder="title" />
+				<input
+					className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					type="text"
+					{...register('title')}
+					placeholder="title"
+				/>
 				<p>{errors.title?.message}</p>
 
 				<span>Completed ?</span>
 				<input type="checkbox" {...register('completed')} />
 				<p>{errors.completed?.message}</p>
 
-				<input disabled={!isValid} type="submit" />
-				<button onClick={() => reset()}>Temizle</button>
-				<button onClick={() => setValue('title', 'test')}>Set Values</button>
-				<button onClick={() => getValues('title')}>GetValues</button>
+				<input
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold  p-2 me-2 rounded cursor-pointer"
+					disabled={!isValid}
+					type="submit"
+				/>
+				<button
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold  p-2 me-2 rounded"
+					onClick={() => reset()}
+				>
+					Temizle
+				</button>
+				<button
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold  p-2 me-2 rounded"
+					onClick={() => setValue('title', 'test')}
+				>
+					Set Values
+				</button>
+				<button
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 me-2 rounded"
+					onClick={() => getValues('title')}
+				>
+					GetValues
+				</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

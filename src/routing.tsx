@@ -23,7 +23,8 @@ export const router = createBrowserRouter([
 		path: '',
 		Component: () => (
 			<>
-				<h1>Main Layout</h1>
+				<h1 className="text-3xl font-bold underline">Main Layout</h1>
+
 				<Link to="/contextapi">Context API</Link>
 				{' | '}
 				<Link to="/redux">REDUX API</Link>
