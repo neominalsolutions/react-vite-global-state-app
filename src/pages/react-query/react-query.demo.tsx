@@ -3,6 +3,13 @@ import { useState } from 'react';
 import { Todo } from '../../models/todo.model';
 import { queryClient } from '../../query-client';
 
+const loadAllQueries = async () => {
+	const data1 = await fetch('https://jsonplaceholder.typicode.com/todos'); // 7sn
+	const data2 = await fetch(`https://jsonplaceholder.typicode.com/posts`); // 5sn
+
+	return { data1, data2 };
+};
+
 // servis folder
 const fetchTodos = async () => {
 	const data = (
@@ -40,6 +47,14 @@ function ReactQueryDemo() {
 		queryKey: ['posts', postId], // postId değişince yeniden yükleme için useEffect gibi tetiklenir
 		queryFn: async () => fetchPostById(postId),
 	});
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const query3 = useQuery<any>({
+		queryKey: ['posts'], // postId değişince yeniden yükleme için useEffect gibi tetiklenir
+		queryFn: async () => loadAllQueries(),
+	});
+
+	console.log('query3', query3);
 
 	const onDropdownSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setPostId(Number(e.target.value));

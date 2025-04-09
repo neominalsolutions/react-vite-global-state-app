@@ -1,6 +1,7 @@
 import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
 import { lazy } from 'react';
 import LazyDemo from './pages/lazy/lazy.demo';
+import TodoFormDemo from './pages/forms/todo.form.demo';
 
 const ReactQueryDemo = lazy(
 	() => import('./pages/react-query/react-query.demo')
@@ -32,6 +33,8 @@ export const router = createBrowserRouter([
 				<Link to="/lazy-demo">Lazy Demo</Link>
 				{' | '}
 				<Link to="/react-query">React Query Demo</Link>
+				{' | '}
+				<Link to="/form">Todo Form Demo</Link>
 
 				<div style={{ padding: 10 }}>
 					<Outlet />
@@ -77,6 +80,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'lazy-demo',
 				Component: LazyDemo,
+			},
+			{
+				path: 'form',
+				Component: TodoFormDemo,
 			},
 		],
 	},
